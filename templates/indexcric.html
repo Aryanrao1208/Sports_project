@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Score Predictor</title>
+    <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="styles.css"> <!-- Add link to your custom CSS file -->
+</head>
+
+<style>
+
+    /* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+}
+
+/* Header styles */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Main content styles */
+main {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+main h2 {
+    margin-bottom: 20px;
+}
+
+main section {
+    margin-bottom: 30px;
+}
+
+main section h3 {
+    margin-bottom: 10px;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+</style>
+
+
+<body>
+
+    <header>
+        <div class="logo">
+            <!-- Add your website logo image here -->
+            <!-- <img src="images/logo.png" alt="Logo"> -->
+            <h1>Sports Score Predictions</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="resultcric.html">Cricket Match Result Prediction</a></li>
+                <li><a href="index1.html">Football Match Result Prediction</a></li>
+                <li class="compare-dropdown">
+                    <a>Cricket Player Compare</a>
+                    <ul class="dropdown-content">
+                        <li><a href="indexbat.html">Compare Batsmen</a></li>
+                        <li><a href="indexbol.html">Compare Bowlers</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html">Cricket Match Score Prediction</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <style>
+        .compare-dropdown .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: black;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+    
+        .compare-dropdown:hover .dropdown-content {
+            display: block;
+        }
+    
+        .compare-dropdown:hover .dropdown-content li {
+            display: block;
+        }
+    
+        .compare-dropdown ul li {
+            display: block;
+        }
+        
+        .compare-dropdown ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .compare-dropdown .dropdown-content a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+        
+        .compare-dropdown .dropdown-content a:hover {
+            background-color: #333;
+        }
+    </style>    
+
+
+    <!-- Website Title -->
+    <div class="container">
+        <h2 class='container-heading' style="margin-left: 400px;"><span class='heading_first'>Final Match Result Prediction </span><span class="heading_second">Indian Premier League (IPL)</span></h2>
+        <div class='description'>
+            <p>A IPL Score Prediction WebApp</p>
+        </div>
+    </div>
+
+
+    <!-- Prediction Area -->
+    <div class="prediction-area">
+
+        <!-- IPL Banner - 1 -->
+        <div class='ipl-banner-left'>
+
+            <div class="slider-frame">
+                <div class="slide-images-up">
+                        <!-- Image-1 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='mi.jpg') }}" alt="Mumbai Indians">
+                        </div>
+                        <!-- Image-2 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='srh.png') }}" alt="Sunrisers Hyderabad">
+                        </div>
+                        <!-- Image-3 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='rcb.png') }}" alt="Royal Challengers Bangalore">
+                        </div>
+                        <!-- Image-4 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='dc.png') }}" alt="Delhi Capitals">
+                        </div>
+                        <!-- Image-5 -->
+                        <div class="image-container">
+                            <img class="image-width" src="{{ url_for('static', filename='rr.png') }}" alt="Rajasthan Royals">
+                        </div>
+                    <!-- Insert images here if needed -->
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Prediction Form -->
+        <div class='div2'>
+            <form action="/predictcric" method="post">
+                <!-- Team 1 Dropdown -->
+                <label for="team1">Team 1:</label>
+                <select id="team1" class="form-input align-center" name="team1">
+                    <option value="none">--- Team 1 ---</option>
+                    <option value="Mumbai Indians">Mumbai Indians</option>
+                    <option value="Chennai Super Kings">Chennai Super Kings</option>
+                    <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                    <option value="Delhi Capitals">Delhi Capitals</option>
+                    <option value="Rajasthan Royals">Rajasthan Royals</option>
+                    <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                    <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                    <option value="Kings XI Punjab">Kings XI Punjab</option>
+                </select><br>
+                <!-- Team 2 Dropdown -->
+                <label for="team2">Team 2:</label>
+                <select id="team2" class="form-input align-center" name="team2">
+                    <option value="none">--- Team 2 ---</option>
+                    <option value="Mumbai Indians">Mumbai Indians</option>
+                    <option value="Chennai Super Kings">Chennai Super Kings</option>
+                    <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                    <option value="Delhi Capitals">Delhi Capitals</option>
+                    <option value="Rajasthan Royals">Rajasthan Royals</option>
+                    <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                    <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                    <option value="Kings XI Punjab">Kings XI Punjab</option>
+                </select><br>
+                <!-- City Input -->
+                <label for="city">City:</label>
+                <select id="city" class="form-input align-center" name="city">
+                    <option value="none">--- City ---</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Jaipur">Jaipur</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Mohali">Mohali</option>
+                </select><br>
+                <!-- Season Input -->
+                <label for="season">Season:</label>
+                <input type="text" id="season" class="form-input" name="season" placeholder="Season"><br>
+                <!-- Toss Winner Dropdown -->
+                <label for="toss_winner">Toss Winner:</label>
+                <select id="toss_winner" class="form-input align-center" name="toss_winner">
+                    <option value="none">--- Toss Winner ---</option>
+                    <option value="Mumbai Indians">Mumbai Indians</option>
+                    <option value="Chennai Super Kings">Chennai Super Kings</option>
+                    <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                    <option value="Delhi Capitals">Delhi Capitals</option>
+                    <option value="Rajasthan Royals">Rajasthan Royals</option>
+                    <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                    <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                    <option value="Kings XI Punjab">Kings XI Punjab</option>
+                </select><br>
+                <!-- Toss Decision Dropdown -->
+                <label for="toss_decision">Toss Decision:</label>
+                <select id="toss_decision" class="form-input align-center" name="toss_decision">
+                    <option value="none">--- Toss Decision ---</option>
+                    <option value="bat">Bat</option>
+                    <option value="field">Field</option>
+                </select><br><br>
+                <!-- Submit Button -->
+                <input type="submit" class="myButton" value="Predict">
+            </form>
+        </div>
+        
+        <style>
+            
+            .div2, .results{
+	display: inline-block;
+	width: auto;
+	height: 429px;
+	text-align: center;
+}
+        </style>
+
+        <!-- IPL Banner - 2 -->
+        <div class='ipl-banner-right'>
+
+
+            <div class="slider-frame">
+                <div class="slide-images-down">
+
+                    <!-- Image-1 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='mi.jpg') }}" alt="Mumbai Indians">
+                    </div>
+                    <!-- Image-2 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='srh.png') }}" alt="Sunrisers Hyderabad">
+                    </div>
+                    <!-- Image-3 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='rcb.png') }}" alt="Royal Challengers Bangalore">
+                    </div>
+                    <!-- Image-4 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='dc.png') }}" alt="Delhi Capitals">
+                    </div>
+                    <!-- Image-5 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='kkr.jpg') }}" alt="Kolkata Knight Riders">
+                    </div>
+                    <!-- Image-6 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='rr.png') }}" alt="Rajasthan Royals">
+                    </div>
+                    <!-- Image-7 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='kxip.png') }}" alt="Kings XI Punjab">
+                    </div>
+                    <!-- Image-8 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='csk.png') }}" alt="Chennai Super Kings">
+                    </div>
+
+                </div>
+            </div>
+
+
+    </div>
+
+
+</body>
+</html>

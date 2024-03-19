@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Score Predictor</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='ipl-favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <!-- Add your website logo image here -->
+            <!-- <img src="images/logo.png" alt="Logo"> -->
+            <h1>Sports Score Predictions</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="resultcric.html">Cricket Match Result Prediction</a></li>
+                <li><a href="index1.html">Football Match Result Prediction</a></li>
+                <li class="compare-dropdown">
+                    <a>Cricket Player Compare</a>
+                    <ul class="dropdown-content">
+                        <li><a href="indexbat.html">Compare Batsmen</a></li>
+                        <li><a href="indexbol.html">Compare Bowlers</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html">Cricket Match Score Prediction</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <style>
+        .compare-dropdown .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: black;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+    
+        .compare-dropdown:hover .dropdown-content {
+            display: block;
+        }
+    
+        .compare-dropdown:hover .dropdown-content li {
+            display: block;
+        }
+    
+        .compare-dropdown ul li {
+            display: block;
+        }
+        
+        .compare-dropdown ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .compare-dropdown .dropdown-content a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+        
+        .compare-dropdown .dropdown-content a:hover {
+            background-color: #333;
+        }
+    </style>
+    <style>
+        /* Global styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        display: flex;
+    }
+    
+    /* Header styles */
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .logo img {
+        height: 40px;
+        margin-right: 10px;
+    }
+    
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+    
+    nav ul li {
+        margin-right: 20px;
+    }
+    
+    nav ul li a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+    }
+    
+    /* Sidebar styles */
+    .sidebar {
+        width: 200px;
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+    }
+    
+    .sidebar h2 {
+        margin-bottom: 10px;
+    }
+    
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .sidebar ul li {
+        margin-bottom: 10px;
+    }
+    
+    .sidebar ul li a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+    }
+    
+    /* Main content styles */
+    main {
+        flex-grow: 1;
+        padding: 20px;
+    }
+    
+    main h2 {
+        margin-bottom: 20px;
+    }
+    
+    main section {
+        margin-bottom: 30px;
+    }
+    
+    main section h3 {
+        margin-bottom: 10px;
+    }
+    
+    /* Footer styles */
+    footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+    }
+    
+
+    </style>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Website Title -->
+    <div class="container" style="margin-top: 20px; display: flex; flex-direction: column; align-items: center;">
+        <h2 class='container-heading'><span class='heading_first'style="margin-left: 100px;">Football Match Result Prediction for </span><span class="heading_second">English Premier League (EPL)</span></h2>
+        <div class='description'>
+            <p>A Football Match Result Prediction WebApp</p>
+        </div>
+    </div>
+
+    <!-- Prediction Area -->
+    <div class="prediction-area">
+
+        <!-- IPL Banner - 1 -->
+        <div class='ipl-banner-left'>
+
+            <div class="slider-frame">
+                <div class="slide-images-up">
+
+                    <!-- Image-1 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='rm.jpg') }}" alt="Mumbai Indians">
+                    </div>
+                    <!-- Image-2 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='barca.jpg') }}" alt="Sunrisers Hyderabad">
+                    </div>
+                    <!-- Image-3 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='inter.jpg') }}" alt="Royal Challengers Bangalore">
+                    </div>
+                    <!-- Image-4 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='liv.jpg') }}" alt="Delhi Capitals">
+                    </div>
+                    <!-- Image-5 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='rm.png') }}" alt="Rajasthan Royals">
+                    </div>
+                    <!-- Image-6 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='inter.jpg') }}" alt="Kolkata Knight Riders">
+                    </div>
+                    <!-- Image-7 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='liv.jpg') }}" alt="Kings XI Punjab">
+                    </div>
+                    <!-- Image-8 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='barca.jpg') }}" alt="Chennai Super Kings">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Prediction Form -->
+        <div class='div2'>
+            <form action="/predict1" method="post">
+                <!-- Team Dropdown -->
+                <select class="form-input align-center" name="team">
+                    <option value="none">--- Team ---</option>
+                    <option value="Manchester City">Manchester City</option>
+                    <option value="Chelsea">Chelsea</option>
+                    <option value="Arsenal">Arsenal</option>
+                    <option value="Tottenham Hotspur">Tottenham Hotspur</option>
+                    <option value="Manchester United">Manchester United</option>
+                    <option value="West Ham United">West Ham United</option>
+                    <option value="Wolverhampton Wanderers">Wolverhampton Wanderers</option>
+                    <option value="Newcastle United">Newcastle United</option>
+                </select><br>
+                <!-- Opponent Dropdown -->
+                <select class="form-input align-center" name="opponent">
+                    <option value="none">--- Opponent---</option>
+                    <option value="Manchester City">Manchester City</option>
+                    <option value="Chelsea">Chelsea</option>
+                    <option value="Arsenal">Arsenal</option>
+                    <option value="Tottenham Hotspur">Tottenham Hotspur</option>
+                    <option value="Manchester United">Manchester United</option>
+                    <option value="West Ham United">West Ham United</option>
+                    <option value="Wolverhampton Wanderers">Wolverhampton Wanderers</option>
+                    <option value="Newcastle United">Newcastle United</option>
+                </select><br>
+                <!-- Venue Input -->
+                <input class="form-input" type="text" name="venue" placeholder="Venue"><br>
+                <!-- Time Input -->
+                <input class="form-input" type="text" name="time" placeholder="Time"><br>
+                <!-- Date Input -->
+                <input class="form-input" type="text" name="date" placeholder="Date"><br>
+                <!-- Submit Button -->
+                <input type="submit" class="myButton" value="Predict Score">
+            </form>
+        </div>
+
+        <!-- IPL Banner - 2 -->
+        <div class='ipl-banner-right'>
+
+            
+            <div class="slider-frame">
+                <div class="slide-images-down">
+
+                    <!-- Image-1 -->
+                    
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='rm.jpg') }}" alt="Mumbai Indians">
+                    </div>
+                    <!-- Image-2 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='barca.jpg') }}" alt="Sunrisers Hyderabad">
+                    </div>
+                    <!-- Image-3 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='inter.jpg') }}" alt="Royal Challengers Bangalore">
+                    </div>
+                    <!-- Image-4 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='liv.jpg') }}" alt="Delhi Capitals">
+                    </div>
+                    <!-- Image-5 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='rm.png') }}" alt="Rajasthan Royals">
+                    </div>
+                    <!-- Image-6 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='inter.jpg') }}" alt="Kolkata Knight Riders">
+                    </div>
+                    <!-- Image-7 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='liv.jpg') }}" alt="Kings XI Punjab">
+                    </div>
+                    <!-- Image-8 -->
+                    <div class="image-container">
+                        <img class="image-width" src="{{ url_for('static', filename='barca.jpg') }}" alt="Chennai Super Kings">
+                    </div>
+
+                </div>
+            </div>
+
+
+    </div>
+<!--  -->
+
+</body>
+</html>
